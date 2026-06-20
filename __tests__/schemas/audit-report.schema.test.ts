@@ -4,8 +4,10 @@ import {
   AiOutputSchema,
 } from "@/lib/schemas/audit-report.schema";
 
+import { type AuditReport } from "@/lib/schemas/audit-report.schema";
+
 /** A fully valid AuditReport fixture. */
-function validReport() {
+function validReport(): AuditReport {
   return {
     targetUrl: "https://example.com",
     auditedAt: new Date().toISOString(),

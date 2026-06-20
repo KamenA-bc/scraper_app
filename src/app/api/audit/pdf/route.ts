@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     const pdfBuffer = await pdfService.generatePdf(auditReport);
 
     // 3. Return the PDF as a binary stream
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(pdfBuffer as unknown as BodyInit, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

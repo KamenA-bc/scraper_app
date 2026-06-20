@@ -35,7 +35,7 @@ export class PdfService {
       
       // We set content and wait until there are no more than 0 network connections for at least 500ms.
       // This ensures any fonts or external styles are loaded if we add them.
-      await page.setContent(html, { waitUntil: "networkidle0" });
+      await page.setContent(html, { waitUntil: "domcontentloaded" });
 
       const pdfBuffer = await page.pdf({
         format: "A4",
