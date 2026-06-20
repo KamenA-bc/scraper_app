@@ -7,6 +7,8 @@ import {
 } from "@/lib/schemas";
 import { PdfService } from "@/lib/services/pdf.service";
 
+export const maxDuration = 300;
+
 /**
  * Type guard for ApiError
  */

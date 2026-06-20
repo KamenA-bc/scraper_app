@@ -9,6 +9,8 @@ import {
 import { ScraperService } from "@/lib/services/scraper.service";
 import { AuditService } from "@/lib/services/audit.service";
 
+export const maxDuration = 300;
+
 /**
  * Type guard for ApiError
  */

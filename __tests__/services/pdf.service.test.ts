@@ -1,10 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { PdfService } from "@/lib/services/pdf.service";
 import { ErrorCode, type AuditReport } from "@/lib/schemas";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium-min";
 
 // Mock puppeteer
-vi.mock("puppeteer", () => {
+vi.mock("puppeteer-core", () => {
   const mockPage = {
     setContent: vi.fn().mockResolvedValue(undefined),
     pdf: vi.fn().mockResolvedValue(new Uint8Array([1, 2, 3, 4])),
@@ -17,6 +18,16 @@ vi.mock("puppeteer", () => {
     default: {
       launch: vi.fn().mockResolvedValue(mockBrowser),
     },
+  };
+});
+
+vi.mock("@sparticuz/chromium-min", () => {
+  return {
+    default: {
+      args: ["--mock"],
+      executablePath: vi.fn().mockResolvedValue("/mock/path"),
+      headless: true,
+    }
   };
 });
 
