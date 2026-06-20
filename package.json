@@ -11,6 +11,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.73",
     "@base-ui/react": "^1.6.0",
     "@mendable/firecrawl-js": "^4.28.2",
     "ai": "^6.0.208",
