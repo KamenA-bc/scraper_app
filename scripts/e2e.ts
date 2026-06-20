@@ -2,7 +2,7 @@ import "dotenv/config";
 import { ScraperService } from "../src/lib/services/scraper.service";
 import { AuditService } from "../src/lib/services/audit.service";
 import { PdfService } from "../src/lib/services/pdf.service";
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -10,10 +10,10 @@ async function main() {
   const targetUrl = process.argv[2] || "https://example.com";
   console.log(`\n🚀 Starting End-to-End Test for: ${targetUrl}\n`);
 
-  if (!process.env.FIRECRAWL_API_KEY || !process.env.OPENAI_API_KEY) {
+  if (!process.env.FIRECRAWL_API_KEY || !process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     console.error("❌ Missing required API keys in environment.");
     console.error(
-      "Please copy .env.example to .env and populate FIRECRAWL_API_KEY and OPENAI_API_KEY",
+      "Please copy .env.example to .env and populate FIRECRAWL_API_KEY and GOOGLE_GENERATIVE_AI_API_KEY",
     );
     process.exit(1);
   }
@@ -33,8 +33,8 @@ async function main() {
     }
 
     // Phase 3: AI Audit
-    console.log("\n2️⃣  Running Vibe & Clarity Audit via Vercel AI SDK (gpt-4o)...");
-    const model = openai("gpt-4o");
+    console.log("\n2️⃣  Running Vibe & Clarity Audit via Vercel AI SDK (gemini-2.5-flash)...");
+    const model = google("gemini-2.5-flash");
     const auditor = new AuditService(model);
     const auditReport = await auditor.analyze(scrapeResult);
     console.log(`✅ Audit complete!`);

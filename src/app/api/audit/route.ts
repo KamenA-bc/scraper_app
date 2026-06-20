@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 import {
   AuditRequestSchema,
   createApiError,
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
     // 3. Perform the AI analysis
     // You can swap the provider/model here (e.g., anthropic('claude-3-5-sonnet-latest'))
-    const model = openai("gpt-4o");
+    const model = google("gemini-2.5-flash");
     const auditor = new AuditService(model);
     const auditReport = await auditor.analyze(scrapeResult);
 
